@@ -1,11 +1,9 @@
 {
   "name": "@despair/discord",
   "version": "1.0.0",
-  "main": "./lib/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
-  "scripts": {
-    "dev": "nodemon"
-  },
   "devDependencies": {
     "nodemon": "^2.0.2",
     "ts-node": "^8.5.4",
