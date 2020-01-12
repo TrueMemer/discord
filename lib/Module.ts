@@ -4,10 +4,10 @@ import { IEventHandler } from "./interfaces/IEventHandler";
 export class Module implements Partial<IModule> {
 
     private _eventHandlers: IEventHandler[] = [];
-    protected _disabled: boolean;
+    public disabled: boolean = false;
 
     public toggle(): void {
-        this._disabled = !this._disabled;
+        this.disabled = !this.disabled;
     }
 
     public registerEventHandler(handler: IEventHandler) {
@@ -15,7 +15,7 @@ export class Module implements Partial<IModule> {
     }
 
     get eventHandlers() {
-        if (this._disabled) return [];
+        if (this.disabled) return [];
         else return this._eventHandlers;
     }
 

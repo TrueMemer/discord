@@ -17,7 +17,7 @@ export class CommanderModule extends Module {
     }
 
     get commands() {
-        if (this._disabled) return [];
+        if (this.disabled) return [];
         else return this._commands;
     }
 }

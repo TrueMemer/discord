@@ -7,7 +7,7 @@ import { CommanderModule } from "../../../extensions/commander.ext";
 
 export class MessageHandler implements IEventHandler {
     public for: string = "message";
-    public ignoreSelf: boolean = true;
+    public ignoreSelf: boolean = false;
 
     constructor(prefix: string) {
         this._prefix = prefix;

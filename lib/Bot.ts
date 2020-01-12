@@ -63,6 +63,36 @@ export class Bot {
     }
 
     public registerModule(module: IModule) {
+
+        if (module.dependencies) {
+            let canLoad = true;
+            let missingDependencies: string[] = [];
+
+            for (const d of module.dependencies) {
+                if (!this._modules.has(d)) {
+                    canLoad = false;
+                    missingDependencies.push(d);
+                }
+            }
+
+            if (!canLoad) {
+                console.log(`[bot] failed to load module '${module.name}' due to missing dependencies: ${missingDependencies.join(',')}`);
+                return;
+            }
+        }
+
+        if (module.optionalDependences) {
+            let missingDependencies: string[] = [];
+
+            for (const d of module.optionalDependences) {
+                if (!this._modules.has(d)) {
+                    missingDependencies.push(d);
+                }
+            }
+
+            console.warn(`[bot][warning] module '${module.name} misses some optional dependencies: ${missingDependencies.join(',')}'`);
+        }
+
         this._modules.set(module.name, module);
         module.initialize(this);
         console.log(`[bot] registered module ${module.name}`);
